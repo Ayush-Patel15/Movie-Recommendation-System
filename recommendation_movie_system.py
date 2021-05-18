@@ -19,7 +19,7 @@ def extract_movie_titles(dic_data):
     return movie_titles
 
 
-#Combining all the possible movie titles in a single list for output $ for parsing  it in next definition to get ratings. 
+#Combining all the possible movie titles in a single list for output & for parsing  it in next definition to get ratings. 
 def get_related_titles(lst_movie_titles):
     combine_lst = []
     for each_movie in lst_movie_titles:
@@ -31,9 +31,10 @@ def get_related_titles(lst_movie_titles):
 
 
 #parsing each particular movie from the list to get its rating if exists.
+#For demo purposes you can use "api_key" = 2080031
 def get_movie_data(movie_title):
     baseurl = 'http://www.omdbapi.com/'
-    para = {'apikey': 2080031, 't': movie_title, 'r':'json'}
+    para = {'apikey': "api_key", 't': movie_title, 'r':'json'}
     page = requests.get(baseurl , params = para)
     data = json.loads(page.text)
     return data
@@ -58,11 +59,12 @@ def get_sorted_recommendation(lst_movie):
     recommended_movie = list(zip(Movie_title , ratings_lst))
     return recommended_movie
 
-inp = input("Enter a movie/list of movie's that you have watched :").split(',')
-result = get_sorted_recommendation(inp)
-for each in result:
-    print(each)
 
-#Example inputs.
-#print(get_sorted_recommendation(['Bridesmaids', 'Sherlock Holmes']))
-#print(get_sorted_recommendation(["Black Panther", "Captain Marvel"]))
+if __name__ == "__main__":
+    inp = input("Enter a movie/list of movie's that you have watched :").split(',')
+    result = get_sorted_recommendation(inp)
+    for each in result:
+        print(each)
+    
+    # print(get_sorted_recommendation(['Bridesmaids', 'Sherlock Holmes']))
+    # print(get_sorted_recommendation(["Black Panther", "Captain Marvel"]))
