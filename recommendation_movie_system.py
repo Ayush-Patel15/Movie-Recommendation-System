@@ -34,7 +34,7 @@ def get_related_titles(lst_movie_titles):
 #For demo purposes you can use "api_key" = 2080031
 def get_movie_data(movie_title):
     baseurl = 'http://www.omdbapi.com/'
-    para = {'apikey': 2080031, 't': movie_title, 'r':'json'}
+    para = {'apikey': 'YOUR_API_KEY', 't': movie_title, 'r':'json'}
     page = requests.get(baseurl , params = para)
     data = json.loads(page.text)
     return data
