@@ -42,11 +42,12 @@ def get_movie_data(movie_title):
 
 #Extracting the rating value
 def get_movie_rating(dict_data):
-    rating = dict_data['imdbRating']
-    if len(rating) <= 0:
-        rating = 'NA'
-    else:
+    # try to extract imdb Rating, and if not available. Set rating to NA
+    try:
+        rating = dict_data['imdbRating']
         rating = rating
+    except Exception as e:
+        rating = "NA"
     return rating
 
 
