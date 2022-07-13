@@ -2,7 +2,7 @@
 import requests
 import json
 
-#function definition for extracting all the dictionary from of data related to movie from tastedive api as per the user input.
+#function definition for extracting all the dictionary data related to movie from tastedive api as per the user input.
 def get_movies_from_tastedive(name):
     baseurl = 'https://tastedive.com/api/similar'
     para_dict = {'q': name, 'type': 'movies', 'limit': 20}
@@ -19,7 +19,7 @@ def extract_movie_titles(dic_data):
     return movie_titles
 
 
-#Combining all the possible movie titles in a single list for output & for parsing  it in next definition to get ratings. 
+#Combining all the possible movie titles in a single list for output and for parsing it to next function to get ratings. 
 def get_related_titles(lst_movie_titles):
     combine_lst = []
     for each_movie in lst_movie_titles:
@@ -30,7 +30,6 @@ def get_related_titles(lst_movie_titles):
     return combine_lst
 
 
-#parsing each particular movie from the list to get its rating if exists.
 #For demo purposes you can use "api_key" = 2080031
 def get_movie_data(movie_title):
     baseurl = 'http://www.omdbapi.com/'
@@ -39,7 +38,7 @@ def get_movie_data(movie_title):
     data = json.loads(page.text)
     return data
 
-
+#parsing each particular movie from the list to get its rating, if exists.
 #Extracting the rating value
 def get_movie_rating(dict_data):
     # try to extract imdb Rating, and if not available. Set rating to NA
@@ -51,7 +50,7 @@ def get_movie_rating(dict_data):
     return rating
 
 
-#output function designed for getting movies's name and ratings $ displaying them in the form of a list.
+#output function designed for getting movies's name and ratings & displaying them in the form of a list.
 def get_sorted_recommendation(lst_movie):
     Movie_title = sorted(get_related_titles(lst_movie))
     ratings_lst = []
